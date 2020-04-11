@@ -28,13 +28,14 @@
             </div>
             <div style="display: none;" id="boxButtonStopWatch"
                 class="boxButton row p-0 m-0 justify-content-around align-items-center">
-                <button class="layoutButton">Back</button>
-                <button class="layoutButton" onclick="start()" >Start</button>
+                <button class="layoutButton" onclick="back()">Back</button>
+                <button class="layoutButton" onclick="startPause()" >Start</button>
             </div>
             <div style="display: none;" id="boxButtonStart"
                 class="boxButton row p-0 m-0 justify-content-around align-items-center">
-                <button class="layoutButton">Stop</button>
-                <button class="layoutButton">Restart</button>
+                <button id="buttonStop" class="layoutButton" onclick="stop()">Stop</button>
+                <button style="display: none;" id="buttonStart" class="layoutButton" onclick="startPause()">Start</button>
+                <button class="layoutButton" onclick="reset()">Restart</button>
                 <button class="layoutButton">Lap</button>
 
             </div>
