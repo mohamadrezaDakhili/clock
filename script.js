@@ -1,39 +1,52 @@
-// document.body.onload = addElement;
-
-// function addElement() {
-//   let newDiv = document.createElement("div");
-//   let newContent = document.createTextNode("hello world");
-//   newDiv.appendChild(newContent);
-
-//   // add the newly created element and its content into the DOM
-//   let currentDiv = document.getElementById("div1");
-//   document.body.insertBefore(newDiv, currentDiv);
-// }
 let isTime;
-var time = setInterval(() => {
-  let time = new Date().toLocaleTimeString("en-US");
-  document.getElementById("clock").innerText = time;
+let time;
+let txtTime = document.getElementById("clock");
+time = setInterval(() => {
+  txtTime.innerHTML = new Date().toLocaleTimeString("en-US");
   isTime = true;
 }, 1000);
 
+// change time 12H or 24H
 function changeClock() {
+  clearInterval(time);
   if (isTime == true) {
-    clearInterval(time);
     isTime = false;
     time = setInterval(() => {
-      let time = new Date().toLocaleTimeString("en-US", { hour12: false });
-      document.getElementById("clock").innerText = time;
+      txtTime.innerHTML = new Date().toLocaleTimeString("en-US", {
+        hour12: false,
+      });
     }, 1000);
   } else {
-    clearInterval(time);
     isTime = true;
     time = setInterval(() => {
-      let time = new Date().toLocaleTimeString("en-US");
-      document.getElementById("clock").innerText = time;
+      txtTime.innerHTML = new Date().toLocaleTimeString("en-US");
     }, 1000);
   }
 }
 
-function stopClock() {
-  
+// stop watch
+function stopWatch() {
+  clearInterval(time);
+  txtTime.innerHTML = "00:00:00";
+  document.getElementById("boxButtonTime").style.display = "none";
+  document.getElementById("boxButtonStopWatch").style.display = "flex";
 }
+
+function start() {
+  document.getElementById("boxButtonStopWatch").style.display = "none";
+  document.getElementById("boxButtonStart").style.display = "flex";
+}
+
+var timeing = 0;
+var running = 0;
+
+function startPause(){
+	if(running == 0){
+		running = 1;
+		increment();
+		document.getElementById("startPause").innerHTML = "Pause";
+	}else{
+		running = 0;
+		document.getElementById("startPause").innerHTML = "Resume";
+	}
+};

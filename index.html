@@ -11,30 +11,41 @@
     <!-- added css file -->
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" type="image/png" href="./PNG/Logo.png" />
-    <title>Doshboard</title>
+    <title>Clock</title>
     <!-- added jquery file in project -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/46d1777388.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-   <div class="w-100 h-100 row p-0 m-0">
-       <div class="col-12 d-flex flex-column justify-content-center align-items-center">
-           <div class="timeLive" id="clock"></div>
-           <div class="boxButton row p-0 m-0 justify-content-between align-items-center">
-               <button class="layoutButton" onclick="changeClock()">12/24</button>
-               <button class="layoutButton">Stopwatch</button>
-            <button class="layoutButton">Timer</button>
+    <div class="w-100 h-100 row p-0 m-0">
+        <div class="col-12 d-flex flex-column justify-content-center align-items-center">
+            <div class="timeLive" id="clock"></div>
+            <div id="boxButtonTime" class="boxButton row p-0 m-0 justify-content-around align-items-center">
+                <button class="layoutButton" onclick="changeClock()">12/24</button>
+                <button class="layoutButton" onclick="stopWatch()">Stopwatch</button>
+                <button class="layoutButton">Timer</button>
+            </div>
+            <div style="display: none;" id="boxButtonStopWatch"
+                class="boxButton row p-0 m-0 justify-content-around align-items-center">
+                <button class="layoutButton">Back</button>
+                <button class="layoutButton" onclick="start()" >Start</button>
+            </div>
+            <div style="display: none;" id="boxButtonStart"
+                class="boxButton row p-0 m-0 justify-content-around align-items-center">
+                <button class="layoutButton">Stop</button>
+                <button class="layoutButton">Restart</button>
+                <button class="layoutButton">Lap</button>
 
-           </div>
-       </div>
+            </div>
+        </div>
 
-   </div>
+    </div>
 </body>
 
 <!-- added js file -->
 <script src="script.js">
-    
+
 </script>
 
 </html>
