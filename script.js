@@ -75,25 +75,26 @@ function reset() {
   txtTime.innerHTML = "00:00:00";
 }
 
+
 // function start time and show it
 function increment() {
   if (running == 1) {
-    setTimeout(function () {
-      timeing++;
-      var mins = Math.floor(timeing / 10 / 60);
-      if (mins <= 9) {
-        mins = "0" + mins;
-      }
-      var secs = Math.floor(timeing / 10);
-      if (secs <= 9) {
-        secs = "0" + secs;
-      }
-      var tenths = Math.floor(timeing % 10);
-      if (tenths <= 9) {
-        tenths = "0" + tenths;
-      }
-      txtTime.innerHTML = mins + ":" + secs + ":" + tenths;
-      increment();
-    }, 100);
+   setTimeout(function () {
+     timeing++;
+     var mins = Math.floor(timeing / 10 / 60);
+     if (mins <= 9) {
+       mins = "0" + mins;
+     }
+     var secs = Math.floor((timeing / 10) % 60); ;
+     if (secs <= 9) {
+       secs = "0" + secs;
+     }
+     var tenths = Math.floor(timeing % 10);
+     if (tenths <= 9) {
+       tenths = "0" + tenths;
+     }
+     txtTime.innerHTML = mins + ":" + secs + ":" + tenths;
+     increment();
+   }, 100);
   }
 }
