@@ -19,30 +19,43 @@
 
 <body>
     <div class="w-100 h-100 row p-0 m-0">
-        <div class="col-12 d-flex flex-column justify-content-center align-items-center">
-            <div class="timeLive" id="clock"></div>
-            <div id="boxButtonTime" class="boxButton row p-0 m-0 justify-content-around align-items-center">
-                <button class="layoutButton" onclick="changeClock()">12/24</button>
-                <button class="layoutButton" onclick="stopWatch()">Stopwatch</button>
-                <button class="layoutButton">Timer</button>
+        <div class="col-12 d-flex justify-content-center align-items-center">
+            <div class="d-flex flex-column justify-content-center align-items-center">
+                <div class="timeLive" id="clock"></div>
+                <div id="boxButtonTime" class="boxButton row p-0 m-0 justify-content-around align-items-center">
+                    <button class="layoutButton" onclick="changeClock()">12/24</button>
+                    <button class="layoutButton" onclick="stopWatch()">Stopwatch</button>
+                    <button class="layoutButton">Timer</button>
+                </div>
+                <div style="display: none;" id="boxButtonStopWatch"
+                    class="boxButton row p-0 m-0 justify-content-around align-items-center">
+                    <button class="layoutButton" onclick="back()">Back</button>
+                    <button class="layoutButton" onclick="startPause()">Start</button>
+                </div>
+                <div style="display: none;" id="boxButtonStart"
+                    class="boxButton row p-0 m-0 justify-content-around align-items-center">
+                    <button id="buttonStop" class="layoutButton" onclick="stop()">Stop</button>
+                    <button style="display: none;" id="buttonStart" class="layoutButton"
+                        onclick="startPause()">Start</button>
+                    <button class="layoutButton" onclick="reset()">Restart</button>
+                    <button class="layoutButton" onclick="lap()">Lap</button>
+                </div>
             </div>
-            <div style="display: none;" id="boxButtonStopWatch"
-                class="boxButton row p-0 m-0 justify-content-around align-items-center">
-                <button class="layoutButton" onclick="back()">Back</button>
-                <button class="layoutButton" onclick="startPause()" >Start</button>
+            <div id="laps">
+                <div class="ml-5 lapTime d-flex flex-column justify-content-center align-items-start">
+                    <span style="font-size: 24px;">laps:</span>
+                    <div id="childLap" class="d-flex flex-column justify-content-center align-items-start">
+                    </div>
+                </div>
             </div>
-            <div style="display: none;" id="boxButtonStart"
-                class="boxButton row p-0 m-0 justify-content-around align-items-center">
-                <button id="buttonStop" class="layoutButton" onclick="stop()">Stop</button>
-                <button style="display: none;" id="buttonStart" class="layoutButton" onclick="startPause()">Start</button>
-                <button class="layoutButton" onclick="reset()">Restart</button>
-                <button class="layoutButton">Lap</button>
 
-            </div>
         </div>
-
     </div>
 </body>
+
+
+
+
 
 <!-- added js file -->
 <script src="script.js">

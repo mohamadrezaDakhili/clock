@@ -1,8 +1,11 @@
 let isTime;
 let time;
 let txtTime = document.getElementById("clock");
+var txtLap;
+document.getElementById("laps").style.display = "none";
 
 function clock() {
+  txtTime.innerHTML = new Date().toLocaleTimeString("en-US");
   time = setInterval(() => {
     txtTime.innerHTML = new Date().toLocaleTimeString("en-US");
     isTime = true;
@@ -14,19 +17,15 @@ clock();
 // change time 12H or 24H
 function changeClock() {
   clearInterval(time);
-  if (isTime == true) {
-    isTime = false;
-    time = setInterval(() => {
-      txtTime.innerHTML = new Date().toLocaleTimeString("en-US", {
-        hour12: false,
-      });
-    }, 1000);
-  } else {
-    isTime = true;
-    time = setInterval(() => {
-      txtTime.innerHTML = new Date().toLocaleTimeString("en-US");
-    }, 1000);
-  }
+  txtTime.innerHTML = new Date().toLocaleTimeString("en-US", {
+    hour12: !isTime,
+  });
+  time = setInterval(() => {
+    txtTime.innerHTML = new Date().toLocaleTimeString("en-US", {
+      hour12: isTime,
+    });
+  }, 1000);
+  isTime = !isTime;
 }
 
 // stop watch
@@ -60,7 +59,8 @@ function startPause() {
     running = 0;
   }
 }
-//Pause
+
+//stop
 function stop() {
   running = 0;
   document.getElementById("buttonStop").style.display = "none";
@@ -68,33 +68,45 @@ function stop() {
 }
 //Restart
 function reset() {
+  txtTime.innerHTML = "00:00:00";
   running = 0;
   timeing = 0;
   document.getElementById("buttonStop").style.display = "none";
   document.getElementById("buttonStart").style.display = "block";
-  txtTime.innerHTML = "00:00:00";
+  document.getElementById("laps").style.display = "none";
+  document.getElementById("childLap").innerHTML = "";
 }
-
+//Lap
+function lap() {
+  document.getElementById("laps").style.display = "flex";
+  if (running == 1) {
+    txtLap = document.createElement("p");
+    txtLap.innerHTML = txtTime.innerText;
+    txtLap.style.fontSize = "40px";
+    document.body.appendChild(txtLap);
+    document.getElementById("childLap").appendChild(txtLap);
+  }
+}
 
 // function start time and show it
 function increment() {
   if (running == 1) {
-   setTimeout(function () {
-     timeing++;
-     var mins = Math.floor(timeing / 10 / 60);
-     if (mins <= 9) {
-       mins = "0" + mins;
-     }
-     var secs = Math.floor((timeing / 10) % 60); ;
-     if (secs <= 9) {
-       secs = "0" + secs;
-     }
-     var tenths = Math.floor(timeing % 10);
-     if (tenths <= 9) {
-       tenths = "0" + tenths;
-     }
-     txtTime.innerHTML = mins + ":" + secs + ":" + tenths;
-     increment();
-   }, 100);
+    setTimeout(function () {
+      timeing++;
+      var mins = Math.floor(timeing / 10 / 60);
+      if (mins <= 9) {
+        mins = "0" + mins;
+      }
+      var secs = Math.floor((timeing / 10) % 60);
+      if (secs <= 9) {
+        secs = "0" + secs;
+      }
+      var tenths = Math.floor(timeing % 10);
+      if (tenths <= 9) {
+        tenths = "0" + tenths;
+      }
+      txtTime.innerHTML = mins + ":" + secs + ":" + tenths;
+      increment();
+    }, 100);
   }
 }
