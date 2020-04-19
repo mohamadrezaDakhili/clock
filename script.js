@@ -1,9 +1,15 @@
 let isTime;
 let time;
 let txtTime = document.getElementById("clock");
-var txtLap;
+let txtLap;
 document.getElementById("laps").style.display = "none";
 
+// func for change display
+function changeDisplay(id, display) {
+  document.getElementById(id).style.display = display;
+}
+
+// clock
 function clock() {
   txtTime.innerHTML = new Date().toLocaleTimeString("en-US");
   time = setInterval(() => {
@@ -11,7 +17,6 @@ function clock() {
     isTime = true;
   }, 1000);
 }
-
 clock();
 
 // change time 12H or 24H
@@ -32,26 +37,26 @@ function changeClock() {
 function stopWatch() {
   clearInterval(time);
   txtTime.innerHTML = "00:00:00";
-  document.getElementById("boxButtonTime").style.display = "none";
-  document.getElementById("boxButtonStopWatch").style.display = "flex";
+  changeDisplay("boxButtonTime", "none");
+  changeDisplay("boxButtonStopWatch", "flex");
 }
 
 //back button
 function back() {
   clock();
-  document.getElementById("boxButtonTime").style.display = "flex";
-  document.getElementById("boxButtonStopWatch").style.display = "none";
+  changeDisplay("boxButtonTime", "flex");
+  changeDisplay("boxButtonStopWatch", "none");
 }
 
-var timeing = 0;
-var running = 0;
+let timeing = 0;
+let running = 0;
 
 //start
 function startPause() {
-  document.getElementById("boxButtonStopWatch").style.display = "none";
-  document.getElementById("boxButtonStart").style.display = "flex";
-  document.getElementById("buttonStop").style.display = "block";
-  document.getElementById("buttonStart").style.display = "none";
+  changeDisplay("boxButtonStopWatch", "none");
+  changeDisplay("boxButtonStart", "flex");
+  changeDisplay("buttonStop", "block");
+  changeDisplay("buttonStart", "none");
   if (running == 0) {
     running = 1;
     increment();
@@ -63,22 +68,23 @@ function startPause() {
 //stop
 function stop() {
   running = 0;
-  document.getElementById("buttonStop").style.display = "none";
-  document.getElementById("buttonStart").style.display = "block";
+  changeDisplay("buttonStop", "none");
+  changeDisplay("buttonStart", "block");
 }
 //Restart
 function reset() {
   txtTime.innerHTML = "00:00:00";
   running = 0;
   timeing = 0;
-  document.getElementById("buttonStop").style.display = "none";
-  document.getElementById("buttonStart").style.display = "block";
-  document.getElementById("laps").style.display = "none";
+  changeDisplay("buttonStop", "none");
+  changeDisplay("buttonStart", "block");
+  changeDisplay("laps", "none");
   document.getElementById("childLap").innerHTML = "";
 }
+
 //Lap
 function lap() {
-  document.getElementById("laps").style.display = "flex";
+  changeDisplay("laps", "flex");
   if (running == 1) {
     txtLap = document.createElement("p");
     txtLap.innerHTML = txtTime.innerText;
